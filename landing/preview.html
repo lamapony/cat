@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Office Cat — Design System Preview</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #ff6b35; --primary-soft: #ff8c5a; --on-primary: #0a0a0f;
+            --ink: #f0f0f5; --ink-strong: #fff; --ink-muted: #a0a0b0; --body: #d0d0d8;
+            --hairline: #2a2a35; --canvas: #0a0a0f; --canvas-soft: #12121a; --canvas-soft-2: #1a1a25;
+            --health: #22d3ee; --success: #4ade80; --warning: #fbbf24; --danger: #ef4444;
+            --font: 'Inter', sans-serif; --mono: 'JetBrains Mono', monospace;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: var(--font); background: var(--canvas); color: var(--ink); padding: 48px 24px; line-height: 1.5; }
+        .wrap { max-width: 960px; margin: 0 auto; }
+        h1 { font-size: 32px; font-weight: 700; letter-spacing: -1px; margin-bottom: 8px; }
+        .sub { color: var(--ink-muted); margin-bottom: 48px; }
+        section { margin-bottom: 48px; }
+        h2 { font-size: 14px; font-weight: 600; letter-spacing: 2px; text-transform: uppercase; color: var(--primary); margin-bottom: 20px; }
+        .swatches { display: grid; grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); gap: 12px; }
+        .swatch { border-radius: 12px; overflow: hidden; border: 1px solid var(--hairline); }
+        .swatch-color { height: 64px; }
+        .swatch-info { padding: 10px 12px; background: var(--canvas-soft); font-size: 12px; }
+        .swatch-info strong { display: block; color: var(--ink-strong); }
+        .swatch-info span { color: var(--ink-muted); font-family: var(--mono); }
+        .type-scale > * { margin-bottom: 16px; border-bottom: 1px solid var(--hairline); padding-bottom: 16px; }
+        .t-xl { font-size: 48px; font-weight: 700; letter-spacing: -1.8px; color: var(--ink-strong); }
+        .t-lg { font-size: 32px; font-weight: 600; letter-spacing: -1px; }
+        .t-md { font-size: 20px; font-weight: 600; }
+        .t-body { font-size: 16px; color: var(--body); }
+        .t-mono { font-family: var(--mono); font-size: 13px; color: var(--health); }
+        .t-eyebrow { font-size: 14px; font-weight: 600; letter-spacing: 2px; text-transform: uppercase; color: var(--primary); }
+        .components { display: flex; flex-wrap: wrap; gap: 12px; align-items: center; }
+        .btn { padding: 12px 20px; border-radius: 8px; font-size: 15px; font-weight: 600; border: none; cursor: pointer; font-family: var(--font); }
+        .btn-primary { background: var(--primary); color: var(--on-primary); }
+        .btn-secondary { background: transparent; color: var(--ink); border: 1px solid var(--hairline); }
+        .card { background: var(--canvas-soft); border: 1px solid var(--hairline); border-radius: 16px; padding: 24px; max-width: 320px; }
+        .card h3 { font-size: 20px; margin-bottom: 8px; color: var(--ink-strong); }
+        .card p { font-size: 15px; color: var(--body); }
+        .health-bar { height: 6px; background: var(--canvas-soft-2); border-radius: 9999px; margin-top: 16px; overflow: hidden; }
+        .health-fill { height: 100%; width: 75%; background: linear-gradient(90deg, var(--danger), var(--warning), var(--success)); border-radius: 9999px; }
+        .link { color: var(--primary-soft); font-size: 14px; margin-top: 32px; display: inline-block; }
+    </style>
+</head>
+<body>
+    <div class="wrap">
+        <h1>Office Cat Design System</h1>
+        <p class="sub">Preview catalog from DESIGN.md · <a href="index.html" class="link" style="margin:0">View landing page →</a></p>
+
+        <section>
+            <h2>Color Palette</h2>
+            <div class="swatches">
+                <div class="swatch"><div class="swatch-color" style="background:#0a0a0f"></div><div class="swatch-info"><strong>Canvas</strong><span>#0a0a0f</span></div></div>
+                <div class="swatch"><div class="swatch-color" style="background:#12121a"></div><div class="swatch-info"><strong>Surface</strong><span>#12121a</span></div></div>
+                <div class="swatch"><div class="swatch-color" style="background:#ff6b35"></div><div class="swatch-info"><strong>Primary</strong><span>#ff6b35</span></div></div>
+                <div class="swatch"><div class="swatch-color" style="background:#22d3ee"></div><div class="swatch-info"><strong>Health</strong><span>#22d3ee</span></div></div>
+                <div class="swatch"><div class="swatch-color" style="background:#4ade80"></div><div class="swatch-info"><strong>Success</strong><span>#4ade80</span></div></div>
+                <div class="swatch"><div class="swatch-color" style="background:#ef4444"></div><div class="swatch-info"><strong>Danger</strong><span>#ef4444</span></div></div>
+            </div>
+        </section>
+
+        <section>
+            <h2>Typography</h2>
+            <div class="type-scale">
+                <p class="t-xl">Display XL — 72px</p>
+                <p class="t-lg">Display LG — 48px</p>
+                <p class="t-md">Card Title — 20px</p>
+                <p class="t-body">Body — 16px. Office Cat creates natural excuses for people to interact.</p>
+                <p class="t-mono">JetBrains Mono — noise: 42dB · mood: content</p>
+                <p class="t-eyebrow">Eyebrow Label</p>
+            </div>
+        </section>
+
+        <section>
+            <h2>Components</h2>
+            <div class="components">
+                <button class="btn btn-primary">Primary CTA</button>
+                <button class="btn btn-secondary">Secondary</button>
+            </div>
+            <div class="card" style="margin-top:20px">
+                <h3>Feature Card</h3>
+                <p>Dark panel with hairline border. Hover lifts with terracotta accent.</p>
+                <div class="health-bar"><div class="health-fill"></div></div>
+            </div>
+        </section>
+    </div>
+</body>
+</html>

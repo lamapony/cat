@@ -500,6 +500,121 @@
             animation: pulse 2s ease-in-out infinite;
         }
 
+        /* Problem section */
+        .problem-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: var(--lg);
+        }
+
+        .problem-card {
+            background: var(--canvas-soft);
+            border: 1px solid var(--hairline);
+            border-radius: var(--r-lg);
+            padding: var(--2xl);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .problem-card::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, var(--danger), transparent);
+            opacity: 0.4;
+        }
+
+        .problem-stat {
+            font-size: 40px;
+            font-weight: 700;
+            letter-spacing: -1.5px;
+            color: var(--danger);
+            line-height: 1;
+            margin-bottom: var(--md);
+        }
+
+        .problem-card h3 {
+            font-size: 20px;
+            font-weight: 600;
+            color: var(--ink-strong);
+            margin-bottom: var(--sm);
+        }
+
+        .problem-card p {
+            font-size: 15px;
+            color: var(--body);
+            line-height: 1.55;
+        }
+
+        .quote-block {
+            margin-top: var(--5xl);
+            padding: var(--3xl);
+            background: linear-gradient(135deg, rgba(255, 107, 53, 0.08) 0%, rgba(34, 211, 238, 0.05) 100%);
+            border: 1px solid var(--hairline);
+            border-radius: var(--r-xl);
+            text-align: center;
+            position: relative;
+        }
+
+        .quote-block blockquote {
+            font-size: clamp(20px, 3vw, 28px);
+            font-weight: 600;
+            letter-spacing: -0.6px;
+            color: var(--ink-strong);
+            line-height: 1.35;
+            max-width: 720px;
+            margin: 0 auto;
+        }
+
+        .quote-block cite {
+            display: block;
+            margin-top: var(--lg);
+            font-size: 14px;
+            font-style: normal;
+            color: var(--ink-muted);
+            font-family: var(--mono);
+        }
+
+        /* Mobile nav drawer */
+        .mobile-menu {
+            display: none;
+            position: fixed;
+            inset: 0;
+            z-index: 2000;
+            background: rgba(10, 10, 15, 0.95);
+            backdrop-filter: blur(12px);
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: var(--2xl);
+        }
+
+        .mobile-menu.open { display: flex; }
+
+        .mobile-menu a {
+            font-size: 24px;
+            font-weight: 600;
+            color: var(--ink);
+            text-decoration: none;
+            letter-spacing: -0.5px;
+        }
+
+        .mobile-menu a:hover { color: var(--primary); }
+
+        .mobile-close {
+            position: absolute;
+            top: var(--2xl);
+            right: var(--2xl);
+            background: none;
+            border: none;
+            color: var(--ink-muted);
+            cursor: pointer;
+            padding: var(--sm);
+        }
+
         /* Metrics strip */
         .metrics {
             position: relative;
@@ -1080,6 +1195,8 @@
             }
 
             .footer-inner { flex-direction: column; text-align: center; }
+            .problem-grid { grid-template-columns: 1fr; }
+            .nav-actions .btn-ghost { display: none; }
         }
     </style>
 </head>
@@ -1108,9 +1225,23 @@
             <div class="nav-actions">
                 <a href="../dashboard/index.html" class="btn btn-ghost">Dashboard</a>
                 <a href="#pricing" class="btn btn-primary">Get Started</a>
+                <button class="menu-toggle" id="menuOpen" aria-label="Open menu">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+                </button>
             </div>
         </div>
     </nav>
+
+    <div class="mobile-menu" id="mobileMenu" aria-hidden="true">
+        <button class="mobile-close" id="menuClose" aria-label="Close menu">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+        </button>
+        <a href="#features">Features</a>
+        <a href="#how-it-works">How It Works</a>
+        <a href="#factory">Factory</a>
+        <a href="#pricing">Pricing</a>
+        <a href="#pricing" class="btn btn-primary">Get Started</a>
+    </div>
 
     <header class="hero">
         <div class="container hero-grid">
@@ -1195,7 +1326,38 @@
         </div>
     </div>
 
-    <section class="section" id="features">
+    <section class="section" id="problem">
+        <div class="container">
+            <div class="section-header reveal">
+                <p class="eyebrow">The problem</p>
+                <h2 class="display-lg">People don't socialize at work anymore</h2>
+                <p class="subhead">Remote work killed spontaneous interaction. Even in offices, people sit with headphones, eat alone, avoid eye contact.</p>
+            </div>
+            <div class="problem-grid">
+                <div class="problem-card reveal">
+                    <div class="problem-stat">47%</div>
+                    <h3>Silent Offices</h3>
+                    <p>Feel isolated in open-plan spaces. Headphones on, eyes down — silos form without anyone noticing.</p>
+                </div>
+                <div class="problem-card reveal">
+                    <div class="problem-stat">68%</div>
+                    <h3>Forced Fun</h3>
+                    <p>Want better social tools but hate awkward team-building. Pizza parties don't fix quiet quitting.</p>
+                </div>
+                <div class="problem-card reveal">
+                    <div class="problem-stat">−30%</div>
+                    <h3>Noise Stress</h3>
+                    <p>Loud offices burn people out. Rules don't help — but a shared pet that suffers from noise? Teams self-regulate.</p>
+                </div>
+            </div>
+            <div class="quote-block reveal">
+                <blockquote>"Hey, the cat looks sad. Want to take it for a walk?"</blockquote>
+                <cite>— the moment everything changes</cite>
+            </div>
+        </div>
+    </section>
+
+    <section class="section section-alt" id="features">
         <div class="container">
             <div class="section-header reveal">
                 <p class="eyebrow">Features</p>
@@ -1255,7 +1417,7 @@
         </div>
     </section>
 
-    <section class="section section-alt" id="how-it-works">
+    <section class="section" id="how-it-works">
         <div class="container">
             <div class="section-header reveal">
                 <p class="eyebrow">How it works</p>
@@ -1461,6 +1623,20 @@
 
         reveals.forEach(el => observer.observe(el));
         document.querySelectorAll('.hero .reveal').forEach(el => el.classList.add('visible'));
+
+        const menu = document.getElementById('mobileMenu');
+        document.getElementById('menuOpen').addEventListener('click', () => {
+            menu.classList.add('open');
+            menu.setAttribute('aria-hidden', 'false');
+            document.body.style.overflow = 'hidden';
+        });
+        const closeMenu = () => {
+            menu.classList.remove('open');
+            menu.setAttribute('aria-hidden', 'true');
+            document.body.style.overflow = '';
+        };
+        document.getElementById('menuClose').addEventListener('click', closeMenu);
+        menu.querySelectorAll('a').forEach(a => a.addEventListener('click', closeMenu));
     </script>
 </body>
 </html>
