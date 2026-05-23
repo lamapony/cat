@@ -6,37 +6,37 @@
     <title>Office Cat — Your Team's Social Catalyst</title>
     <style>
         /* ============================================
-           DESIGN.md Tokens — Office Cat Design System
+           DESIGN-light.md Tokens — Office Cat Light Theme
            ============================================ */
         :root {
             /* Colors */
-            --primary: #ff6b35;
-            --primary-soft: #ff8c5a;
-            --primary-deep: #e55a2b;
-            --on-primary: #0a0a0f;
-            --ink: #f0f0f5;
-            --ink-strong: #ffffff;
-            --ink-muted: #a0a0b0;
-            --ink-subtle: #606070;
-            --body: #d0d0d8;
-            --mute: #8a8a95;
-            --hairline: #2a2a35;
-            --hairline-strong: #3a3a45;
-            --canvas: #0a0a0f;
-            --canvas-soft: #12121a;
-            --canvas-soft-2: #1a1a25;
-            --health: #22d3ee;
-            --health-soft: #67e8f9;
-            --success: #4ade80;
-            --warning: #fbbf24;
+            --primary: #e85d2b;
+            --primary-soft: #f07040;
+            --primary-deep: #c44a1a;
+            --on-primary: #ffffff;
+            --ink: #1a1a1a;
+            --ink-strong: #000000;
+            --ink-muted: #6b6b6b;
+            --ink-subtle: #9a9a9a;
+            --body: #4a4a4a;
+            --mute: #8a8a8a;
+            --hairline: #e5e5e5;
+            --hairline-strong: #d0d0d0;
+            --canvas: #faf9f6;
+            --canvas-soft: #ffffff;
+            --canvas-soft-2: #f5f4f0;
+            --health: #0ea5e9;
+            --health-soft: #38bdf8;
+            --success: #22c55e;
+            --warning: #f59e0b;
             --danger: #ef4444;
-            --inverse-canvas: #ffffff;
-            --inverse-surface: #f5f5f5;
-            --inverse-ink: #0a0a0f;
+            --inverse-canvas: #0a0a0f;
+            --inverse-surface: #12121a;
+            --inverse-ink: #f0f0f5;
 
             /* Glow */
-            --accent-glow: rgba(255, 107, 53, 0.3);
-            --health-glow: rgba(34, 211, 238, 0.3);
+            --accent-glow: rgba(232, 93, 43, 0.15);
+            --health-glow: rgba(14, 165, 233, 0.2);
 
             /* Typography */
             --font: Inter, system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
@@ -82,7 +82,7 @@
             top: 0;
             width: 100%;
             padding: var(--md) var(--3xl);
-            background: rgba(10, 10, 15, 0.9);
+            background: rgba(250, 249, 246, 0.9);
             backdrop-filter: blur(20px);
             border-bottom: 1px solid var(--hairline);
             z-index: 1000;
@@ -133,7 +133,7 @@
         .cta-nav:hover {
             background: var(--primary-soft);
             transform: translateY(-2px);
-            box-shadow: 0 10px 40px var(--accent-glow);
+            box-shadow: 0 10px 40px rgba(232, 93, 43, 0.25);
         }
 
         /* ============================================
@@ -216,7 +216,7 @@
         .btn-primary:hover {
             background: var(--primary-soft);
             transform: translateY(-2px);
-            box-shadow: 0 10px 40px var(--accent-glow);
+            box-shadow: 0 10px 40px rgba(232, 93, 43, 0.25);
         }
 
         .btn-secondary {
@@ -253,6 +253,7 @@
             justify-content: center;
             position: relative;
             overflow: hidden;
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.06);
         }
 
         .cat-visual::before {
@@ -261,7 +262,7 @@
             inset: 0;
             background:
                 radial-gradient(circle at 30% 40%, var(--accent-glow) 0%, transparent 50%),
-                radial-gradient(circle at 70% 60%, rgba(255, 140, 90, 0.2) 0%, transparent 50%);
+                radial-gradient(circle at 70% 60%, rgba(232, 93, 43, 0.08) 0%, transparent 50%);
         }
 
         .cat-face {
@@ -361,6 +362,7 @@
             transition: all 0.3s;
             position: relative;
             overflow: hidden;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
         }
 
         .feature-card::before {
@@ -378,7 +380,7 @@
         .feature-card:hover {
             transform: translateY(-5px);
             border-color: var(--primary);
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08);
         }
 
         .feature-card:hover::before {
@@ -409,7 +411,7 @@
            ============================================ */
         .how-it-works {
             padding: var(--6xl) var(--2xl);
-            background: var(--canvas-soft);
+            background: var(--canvas-soft-2);
         }
 
         .steps {
@@ -456,7 +458,7 @@
         .factory-badge-section {
             padding: var(--3xl) var(--2xl);
             text-align: center;
-            background: var(--canvas-soft);
+            background: var(--canvas-soft-2);
             border-top: 1px solid var(--hairline);
             border-bottom: 1px solid var(--hairline);
         }
@@ -465,10 +467,11 @@
             display: inline-flex;
             align-items: center;
             gap: var(--lg);
-            background: var(--canvas-soft-2);
+            background: var(--canvas-soft);
             border: 1px solid var(--hairline);
             border-radius: var(--r-lg);
             padding: var(--lg) var(--2xl);
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
         }
 
         .factory-badge .icon {
@@ -529,6 +532,7 @@
             padding: var(--xl);
             text-align: center;
             transition: all 0.3s;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
         }
 
         .agent-card:hover {
@@ -601,6 +605,7 @@
             padding: var(--2xl);
             position: relative;
             transition: all 0.3s;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
         }
 
         .pricing-card.popular {
