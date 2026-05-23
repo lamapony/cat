@@ -1,0 +1,599 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Office Cat — Pitch Deck</title>
+    <style>
+        :root {
+            --bg: #0a0a0f;
+            --surface: #12121a;
+            --surface-2: #1a1a25;
+            --ink: #f0f0f5;
+            --ink-2: #a0a0b0;
+            --ink-3: #606070;
+            --accent: #ff6b35;
+            --accent-2: #ff8c5a;
+            --accent-glow: rgba(255, 107, 53, 0.3);
+            --line: #2a2a35;
+            --success: #4ade80;
+            --warning: #fbbf24;
+            --danger: #ef4444;
+            --health: #22d3ee;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: var(--bg);
+            color: var(--ink);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        .slide {
+            width: 100vw;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 4rem;
+            position: relative;
+            page-break-after: always;
+        }
+
+        .slide-number {
+            position: absolute;
+            bottom: 2rem;
+            right: 2rem;
+            color: var(--ink-3);
+            font-size: 0.875rem;
+        }
+
+        /* Slide 1: Title */
+        .slide-title { text-align: center; }
+
+        .slide-title .logo {
+            font-size: 6rem;
+            margin-bottom: 2rem;
+        }
+
+        .slide-title h1 {
+            font-size: 4rem;
+            font-weight: 900;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, var(--ink) 0%, var(--accent-2) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .slide-title .tagline {
+            font-size: 1.5rem;
+            color: var(--ink-2);
+            margin-bottom: 2rem;
+        }
+
+        .slide-title .team-note {
+            color: var(--ink-3);
+            font-size: 1rem;
+            margin-top: 2rem;
+        }
+
+        /* Slide 2: Problem */
+        .slide-problem h2 {
+            font-size: 2.5rem;
+            font-weight: 800;
+            margin-bottom: 3rem;
+            text-align: center;
+        }
+
+        .problem-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            max-width: 1000px;
+        }
+
+        .problem-card {
+            background: var(--surface);
+            border: 1px solid var(--line);
+            border-radius: 16px;
+            padding: 2rem;
+            text-align: center;
+        }
+
+        .problem-card .icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .problem-card h3 {
+            font-size: 1.25rem;
+            font-weight: 700;
+            margin-bottom: 0.75rem;
+        }
+
+        .problem-card p {
+            color: var(--ink-2);
+            font-size: 0.95rem;
+        }
+
+        /* Slide 3: Solution */
+        .slide-solution {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            max-width: 1200px;
+            align-items: center;
+        }
+
+        .solution-text h2 {
+            font-size: 2.5rem;
+            font-weight: 800;
+            margin-bottom: 1.5rem;
+        }
+
+        .solution-text p {
+            color: var(--ink-2);
+            font-size: 1.1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .solution-visual {
+            background: var(--surface);
+            border: 2px solid var(--line);
+            border-radius: 24px;
+            padding: 3rem;
+            text-align: center;
+        }
+
+        .solution-visual .cat-emoji {
+            font-size: 8rem;
+            animation: breathe 3s ease-in-out infinite;
+        }
+
+        @keyframes breathe {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+
+        .health-bar-demo {
+            width: 200px;
+            height: 8px;
+            background: var(--surface-2);
+            border-radius: 4px;
+            margin: 1rem auto;
+            overflow: hidden;
+        }
+
+        .health-fill-demo {
+            height: 100%;
+            width: 60%;
+            background: linear-gradient(90deg, var(--danger), var(--warning), var(--success));
+            border-radius: 4px;
+        }
+
+        /* Slide 4: How It Works */
+        .slide-mechanics h2 {
+            font-size: 2.5rem;
+            font-weight: 800;
+            margin-bottom: 3rem;
+            text-align: center;
+        }
+
+        .mechanics-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            max-width: 1000px;
+        }
+
+        .mechanic-card {
+            background: var(--surface);
+            border: 1px solid var(--line);
+            border-radius: 16px;
+            padding: 2rem;
+            text-align: center;
+        }
+
+        .mechanic-card .icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .mechanic-card h3 {
+            font-size: 1.25rem;
+            font-weight: 700;
+            margin-bottom: 0.75rem;
+        }
+
+        .mechanic-card p {
+            color: var(--ink-2);
+            font-size: 0.95rem;
+        }
+
+        /* Slide 5: Market */
+        .slide-market h2 {
+            font-size: 2.5rem;
+            font-weight: 800;
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+
+        .market-stats {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            max-width: 900px;
+            margin-bottom: 3rem;
+        }
+
+        .stat {
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 3rem;
+            font-weight: 900;
+            color: var(--accent);
+        }
+
+        .stat-label {
+            color: var(--ink-2);
+            font-size: 1rem;
+        }
+
+        .market-note {
+            color: var(--ink-2);
+            font-size: 1.1rem;
+            max-width: 700px;
+            text-align: center;
+        }
+
+        /* Slide 6: Business Model */
+        .slide-business h2 {
+            font-size: 2.5rem;
+            font-weight: 800;
+            margin-bottom: 3rem;
+            text-align: center;
+        }
+
+        .revenue-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1.5rem;
+            max-width: 800px;
+        }
+
+        .revenue-card {
+            background: var(--surface);
+            border: 1px solid var(--line);
+            border-radius: 16px;
+            padding: 1.5rem;
+        }
+
+        .revenue-card h3 {
+            font-size: 1.1rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            color: var(--accent);
+        }
+
+        .revenue-card p {
+            color: var(--ink-2);
+            font-size: 0.9rem;
+        }
+
+        /* Slide 7: Team */
+        .slide-team h2 {
+            font-size: 2.5rem;
+            font-weight: 800;
+            margin-bottom: 3rem;
+            text-align: center;
+        }
+
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 2rem;
+            max-width: 1000px;
+        }
+
+        .team-member {
+            text-align: center;
+        }
+
+        .team-member .avatar {
+            width: 80px;
+            height: 80px;
+            background: var(--surface);
+            border: 2px solid var(--line);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            margin: 0 auto 1rem;
+        }
+
+        .team-member h3 {
+            font-size: 1.1rem;
+            font-weight: 700;
+            margin-bottom: 0.25rem;
+        }
+
+        .team-member p {
+            color: var(--ink-2);
+            font-size: 0.85rem;
+        }
+
+        /* Slide 8: Ask */
+        .slide-ask { text-align: center; }
+
+        .slide-ask h2 {
+            font-size: 3rem;
+            font-weight: 900;
+            margin-bottom: 2rem;
+        }
+
+        .ask-amount {
+            font-size: 5rem;
+            font-weight: 900;
+            color: var(--accent);
+            margin-bottom: 2rem;
+        }
+
+        .ask-breakdown {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            max-width: 900px;
+            margin-bottom: 3rem;
+        }
+
+        .ask-item {
+            background: var(--surface);
+            border: 1px solid var(--line);
+            border-radius: 16px;
+            padding: 1.5rem;
+        }
+
+        .ask-item .amount {
+            font-size: 2rem;
+            font-weight: 800;
+            color: var(--accent);
+            margin-bottom: 0.5rem;
+        }
+
+        .ask-item p {
+            color: var(--ink-2);
+            font-size: 0.9rem;
+        }
+
+        .slide-ask .team-note {
+            color: var(--ink-3);
+            font-size: 1rem;
+            margin-top: 2rem;
+        }
+
+        /* Navigation hint */
+        .nav-hint {
+            position: fixed;
+            bottom: 2rem;
+            left: 50%;
+            transform: translateX(-50%);
+            color: var(--ink-3);
+            font-size: 0.875rem;
+            z-index: 100;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .slide { padding: 2rem; }
+            .slide-title h1 { font-size: 2.5rem; }
+            .slide-solution { grid-template-columns: 1fr; }
+            .problem-grid, .mechanics-grid, .market-stats, .revenue-grid, .team-grid, .ask-breakdown {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="nav-hint">Use Arrow keys or Space to navigate</div>
+
+    <!-- Slide 1: Title -->
+    <section class="slide slide-title">
+        <div class="logo">🐱</div>
+        <h1>Office Cat</h1>
+        <p class="tagline">A Tamagotchi for your team. It feels. It fades. It brings people together.</p>
+        <p class="team-note">Built by a team, for teams. Hackathon 2026.</p>
+        <div class="slide-number">1 / 8</div>
+    </section>
+
+    <!-- Slide 2: Problem -->
+    <section class="slide slide-problem">
+        <h2>The Problem</h2>
+        <div class="problem-grid">
+            <div class="problem-card">
+                <div class="icon">🔇</div>
+                <h3>Silent Offices</h3>
+                <p>People sit with headphones, eat alone, avoid eye contact. Even in offices, everyone is isolated.</p>
+            </div>
+            <div class="problem-card">
+                <div class="icon">📊</div>
+                <h3>Forced Fun</h3>
+                <p>Team-building exercises feel corporate and awkward. People check their phones through "bonding activities."</p>
+            </div>
+            <div class="problem-card">
+                <div class="icon">😰</div>
+                <h3>No Social Glue</h3>
+                <p>No natural reason to talk to colleagues. Silos form. Burnout rises. Quiet quitting accelerates.</p>
+            </div>
+        </div>
+        <div class="slide-number">2 / 8</div>
+    </section>
+
+    <!-- Slide 3: Solution -->
+    <section class="slide slide-solution">
+        <div class="solution-text">
+            <h2>Meet Office Cat</h2>
+            <p>A robot cat that lives on your desk and gets lonely when no one interacts with it.</p>
+            <p>When it fades, someone picks it up and invites a colleague for a walk. The cat heals. Two people talk. No forced team-building — just a pet that needs you.</p>
+            <p><strong>Social function first.</strong> Not a productivity tool. A reason to connect.</p>
+        </div>
+        <div class="solution-visual">
+            <div class="cat-emoji">🐱</div>
+            <div class="health-bar-demo">
+                <div class="health-fill-demo"></div>
+            </div>
+            <p style="color: var(--ink-2); font-size: 0.9rem;">Health: 60% — needs a walk</p>
+        </div>
+        <div class="slide-number">3 / 8</div>
+    </section>
+
+    <!-- Slide 4: Mechanics -->
+    <section class="slide slide-mechanics">
+        <h2>How It Works</h2>
+        <div class="mechanics-grid">
+            <div class="mechanic-card">
+                <div class="icon">🤝</div>
+                <h3>Connect</h3>
+                <p>Cat needs human interaction. Left alone for hours, it gets lonely. Someone notices, reaches out to a colleague.</p>
+            </div>
+            <div class="mechanic-card">
+                <div class="icon">💀</div>
+                <h3>Fade</h3>
+                <p>Health drops below 30%: grey screen, droopy ears. The team sees a suffering pet — not a metric. Emotional trigger.</p>
+            </div>
+            <div class="mechanic-card">
+                <div class="icon">🚶</div>
+                <h3>Heal</h3>
+                <p>Two people walk the cat for 10 minutes. Motion + proximity sensors restore health. They talk. Bond. Return as a team.</p>
+            </div>
+        </div>
+        <div class="slide-number">4 / 8</div>
+    </section>
+
+    <!-- Slide 5: Market -->
+    <section class="slide slide-market">
+        <h2>Market Opportunity</h2>
+        <div class="market-stats">
+            <div class="stat">
+                <div class="stat-number">$12B</div>
+                <div class="stat-label">Companion robot market 2026</div>
+            </div>
+            <div class="stat">
+                <div class="stat-number">68%</div>
+                <div class="stat-label">Employees want office social tools</div>
+            </div>
+            <div class="stat">
+                <div class="stat-number">3.2M</div>
+                <div class="stat-label">Open-plan offices globally</div>
+            </div>
+        </div>
+        <p class="market-note">First mover in "social hardware for offices" — not a productivity tool, but a social catalyst. The $12B companion robot market has no player focused on workplace loneliness.</p>
+        <div class="slide-number">5 / 8</div>
+    </section>
+
+    <!-- Slide 6: Business Model -->
+    <section class="slide slide-business">
+        <h2>Revenue Streams</h2>
+        <div class="revenue-grid">
+            <div class="revenue-card">
+                <h3>Hardware — $149</h3>
+                <p>One-time purchase. 55% margin on Atech.dev kit + assembly + branding.</p>
+            </div>
+            <div class="revenue-card">
+                <h3>Team SaaS — $29/mo</h3>
+                <p>Social analytics: walks taken, interactions, team mood. Multiple cat sync across offices.</p>
+            </div>
+            <div class="revenue-card">
+                <h3>Enterprise — Custom</h3>
+                <p>Fleet across offices, HR dashboard, custom social rituals per team culture.</p>
+            </div>
+            <div class="revenue-card">
+                <h3>Merch & Events — $5-15</h3>
+                <p>Seasonal skins (holiday cat, summer cat), team event packs, physical accessories.</p>
+            </div>
+        </div>
+        <div class="slide-number">6 / 8</div>
+    </section>
+
+    <!-- Slide 7: Team -->
+    <section class="slide slide-team">
+        <h2>The Team</h2>
+        <div class="team-grid">
+            <div class="team-member">
+                <div class="avatar">👤</div>
+                <h3>Dima</h3>
+                <p>Product & Vision</p>
+            </div>
+            <div class="team-member">
+                <div class="avatar">👤</div>
+                <h3>CTO</h3>
+                <p>Hardware & API</p>
+            </div>
+            <div class="team-member">
+                <div class="avatar">👤</div>
+                <h3>Designer</h3>
+                <p>Cat Behavior & UX</p>
+            </div>
+            <div class="team-member">
+                <div class="avatar">👤</div>
+                <h3>Developer</h3>
+                <p>Backend & Integration</p>
+            </div>
+        </div>
+        <p style="color: var(--ink-3); margin-top: 2rem;">4 people. 1 day. 1 robot cat.</p>
+        <div class="slide-number">7 / 8</div>
+    </section>
+
+    <!-- Slide 8: Ask -->
+    <section class="slide slide-ask">
+        <h2>The Ask</h2>
+        <div class="ask-amount">$250K</div>
+        <div class="ask-breakdown">
+            <div class="ask-item">
+                <div class="amount">$80K</div>
+                <p>Hardware refinement & certification</p>
+            </div>
+            <div class="ask-item">
+                <div class="amount">$100K</div>
+                <p>Team expansion (2 engineers, 1 designer)</p>
+            </div>
+            <div class="ask-item">
+                <div class="amount">$70K</div>
+                <p>50 pilot offices — free for feedback</p>
+            </div>
+        </div>
+        <p class="team-note">We're not a solo founder with a dream. We're a team that built this in 24 hours.<br>Imagine what we do in 6 months.</p>
+        <div class="slide-number">8 / 8</div>
+    </section>
+
+    <script>
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.slide');
+
+        function showSlide(index) {
+            slides.forEach((slide, i) => {
+                slide.style.display = i === index ? 'flex' : 'none';
+            });
+        }
+
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowRight' || e.key === ' ' || e.key === 'ArrowDown') {
+                currentSlide = Math.min(currentSlide + 1, slides.length - 1);
+                showSlide(currentSlide);
+            } else if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') {
+                currentSlide = Math.max(currentSlide - 1, 0);
+                showSlide(currentSlide);
+            }
+        });
+
+        showSlide(0);
+    </script>
+</body>
+</html>
