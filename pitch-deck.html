@@ -1,0 +1,662 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Factory — Pitch Deck</title>
+    <style>
+        :root {
+            --bg: #0a0a0f;
+            --surface: #12121a;
+            --surface-2: #1a1a25;
+            --ink: #f0f0f5;
+            --ink-2: #a0a0b0;
+            --ink-3: #606070;
+            --accent: #ff6b35;
+            --accent-2: #ff8c5a;
+            --accent-glow: rgba(255, 107, 53, 0.3);
+            --line: #2a2a35;
+            --success: #4ade80;
+            --warning: #fbbf24;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: var(--bg);
+            color: var(--ink);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        .slide {
+            width: 100vw;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 4rem;
+            position: relative;
+            page-break-after: always;
+        }
+
+        .slide-number {
+            position: absolute;
+            bottom: 2rem;
+            right: 2rem;
+            color: var(--ink-3);
+            font-size: 0.875rem;
+        }
+
+        /* Slide 1: Title */
+        .slide-title {
+            text-align: center;
+        }
+
+        .slide-title .logo {
+            font-size: 6rem;
+            margin-bottom: 2rem;
+        }
+
+        .slide-title h1 {
+            font-size: 4rem;
+            font-weight: 900;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, var(--ink) 0%, var(--accent-2) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .slide-title .tagline {
+            font-size: 1.5rem;
+            color: var(--ink-2);
+            margin-bottom: 2rem;
+        }
+
+        .slide-title .meta {
+            color: var(--ink-3);
+            font-size: 1rem;
+        }
+
+        /* Slide 2: Problem */
+        .slide-problem h2 {
+            font-size: 3rem;
+            font-weight: 800;
+            margin-bottom: 3rem;
+            text-align: center;
+        }
+
+        .problem-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 3rem;
+            max-width: 1000px;
+        }
+
+        .problem-card {
+            text-align: center;
+            padding: 2rem;
+            background: var(--surface);
+            border-radius: 16px;
+            border: 1px solid var(--line);
+        }
+
+        .problem-card .icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .problem-card h3 {
+            font-size: 1.25rem;
+            font-weight: 700;
+            margin-bottom: 0.75rem;
+            color: var(--accent);
+        }
+
+        .problem-card p {
+            color: var(--ink-2);
+            font-size: 0.95rem;
+        }
+
+        /* Slide 3: Solution */
+        .slide-solution {
+            flex-direction: row;
+            gap: 4rem;
+        }
+
+        .solution-text {
+            max-width: 500px;
+        }
+
+        .solution-text h2 {
+            font-size: 3rem;
+            font-weight: 800;
+            margin-bottom: 1.5rem;
+        }
+
+        .solution-text p {
+            font-size: 1.25rem;
+            color: var(--ink-2);
+            margin-bottom: 2rem;
+        }
+
+        .solution-visual {
+            width: 400px;
+            height: 400px;
+            background: var(--surface);
+            border-radius: 24px;
+            border: 2px solid var(--line);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 8rem;
+            position: relative;
+        }
+
+        .solution-visual::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(circle, var(--accent-glow) 0%, transparent 60%);
+            border-radius: 24px;
+        }
+
+        /* Slide 4: Market */
+        .slide-market h2 {
+            font-size: 3rem;
+            font-weight: 800;
+            margin-bottom: 3rem;
+            text-align: center;
+        }
+
+        .market-stats {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 3rem;
+            max-width: 900px;
+        }
+
+        .stat {
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 4rem;
+            font-weight: 900;
+            color: var(--accent);
+            line-height: 1;
+        }
+
+        .stat-label {
+            color: var(--ink-2);
+            margin-top: 0.5rem;
+            font-size: 1rem;
+        }
+
+        .stat-context {
+            color: var(--ink-3);
+            font-size: 0.875rem;
+            margin-top: 0.25rem;
+        }
+
+        /* Slide 5: Business Model */
+        .slide-business h2 {
+            font-size: 3rem;
+            font-weight: 800;
+            margin-bottom: 3rem;
+            text-align: center;
+        }
+
+        .revenue-streams {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2rem;
+            max-width: 800px;
+        }
+
+        .stream {
+            background: var(--surface);
+            border: 1px solid var(--line);
+            border-radius: 16px;
+            padding: 2rem;
+        }
+
+        .stream h3 {
+            font-size: 1.25rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            color: var(--accent);
+        }
+
+        .stream .price {
+            font-size: 2rem;
+            font-weight: 800;
+            margin-bottom: 0.5rem;
+        }
+
+        .stream p {
+            color: var(--ink-2);
+            font-size: 0.95rem;
+        }
+
+        /* Slide 6: Traction */
+        .slide-traction h2 {
+            font-size: 3rem;
+            font-weight: 800;
+            margin-bottom: 3rem;
+            text-align: center;
+        }
+
+        .traction-timeline {
+            display: flex;
+            gap: 2rem;
+            max-width: 1000px;
+        }
+
+        .timeline-item {
+            flex: 1;
+            background: var(--surface);
+            border: 1px solid var(--line);
+            border-radius: 16px;
+            padding: 2rem;
+            position: relative;
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--accent), var(--accent-2));
+            border-radius: 16px 16px 0 0;
+        }
+
+        .timeline-item .date {
+            color: var(--accent);
+            font-weight: 700;
+            font-size: 0.875rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .timeline-item h3 {
+            font-size: 1.25rem;
+            font-weight: 700;
+            margin-bottom: 0.75rem;
+        }
+
+        .timeline-item p {
+            color: var(--ink-2);
+            font-size: 0.95rem;
+        }
+
+        /* Slide 7: Team */
+        .slide-team h2 {
+            font-size: 3rem;
+            font-weight: 800;
+            margin-bottom: 3rem;
+            text-align: center;
+        }
+
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 2rem;
+            max-width: 1000px;
+        }
+
+        .team-member {
+            text-align: center;
+            padding: 2rem;
+            background: var(--surface);
+            border-radius: 16px;
+            border: 1px solid var(--line);
+        }
+
+        .team-member .avatar {
+            width: 80px;
+            height: 80px;
+            background: var(--surface-2);
+            border-radius: 50%;
+            margin: 0 auto 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+        }
+
+        .team-member h3 {
+            font-size: 1.1rem;
+            font-weight: 700;
+            margin-bottom: 0.25rem;
+        }
+
+        .team-member .role {
+            color: var(--accent);
+            font-size: 0.875rem;
+            font-weight: 600;
+        }
+
+        .team-member .bio {
+            color: var(--ink-2);
+            font-size: 0.85rem;
+            margin-top: 0.5rem;
+        }
+
+        /* Slide 8: Ask */
+        .slide-ask {
+            text-align: center;
+        }
+
+        .slide-ask h2 {
+            font-size: 3.5rem;
+            font-weight: 900;
+            margin-bottom: 2rem;
+        }
+
+        .ask-amount {
+            font-size: 6rem;
+            font-weight: 900;
+            color: var(--accent);
+            line-height: 1;
+            margin-bottom: 2rem;
+        }
+
+        .ask-breakdown {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            max-width: 800px;
+            margin: 0 auto 3rem;
+        }
+
+        .ask-item {
+            background: var(--surface);
+            border: 1px solid var(--line);
+            border-radius: 16px;
+            padding: 1.5rem;
+        }
+
+        .ask-item .pct {
+            font-size: 2rem;
+            font-weight: 800;
+            color: var(--accent);
+        }
+
+        .ask-item p {
+            color: var(--ink-2);
+            font-size: 0.95rem;
+            margin-top: 0.5rem;
+        }
+
+        .slide-ask .contact {
+            color: var(--ink-2);
+            font-size: 1.25rem;
+        }
+
+        .slide-ask .contact a {
+            color: var(--accent);
+            text-decoration: none;
+        }
+
+        /* Navigation */
+        .nav-hint {
+            position: fixed;
+            bottom: 2rem;
+            left: 50%;
+            transform: translateX(-50%);
+            color: var(--ink-3);
+            font-size: 0.875rem;
+            z-index: 100;
+        }
+
+        /* Print */
+        @media print {
+            .slide {
+                page-break-after: always;
+                height: 100vh;
+            }
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .slide {
+                padding: 2rem;
+                height: auto;
+                min-height: 100vh;
+            }
+
+            .slide-title h1 {
+                font-size: 2.5rem;
+            }
+
+            .problem-grid,
+            .market-stats,
+            .revenue-streams,
+            .traction-timeline,
+            .team-grid,
+            .ask-breakdown {
+                grid-template-columns: 1fr;
+            }
+
+            .slide-solution {
+                flex-direction: column;
+            }
+
+            .solution-visual {
+                width: 250px;
+                height: 250px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Slide 1: Title -->
+    <div class="slide slide-title">
+        <div class="logo">⚙️</div>
+        <h1>Factory</h1>
+        <p class="tagline">AI Agent Control Plane</p>
+        <p class="meta">Deploy · Monitor · Orchestrate · Scale</p>
+        <div class="slide-number">1 / 8</div>
+    </div>
+
+    <!-- Slide 2: Problem -->
+    <div class="slide slide-problem">
+        <h2>The Problem</h2>
+        <div class="problem-grid">
+            <div class="problem-card">
+                <div class="icon">😵</div>
+                <h3>Agent Sprawl</h3>
+                <p>Teams deploy AI agents everywhere — local scripts, cloud functions, notebooks. No visibility, no control.</p>
+            </div>
+            <div class="problem-card">
+                <div class="icon">💸</div>
+                <h3>Runaway Costs</h3>
+                <p>Token usage spirals out of control. One rogue agent can burn through a month's budget in hours.</p>
+            </div>
+            <div class="problem-card">
+                <div class="icon">🔒</div>
+                <h3>Security Nightmare</h3>
+                <p>API keys in repos, no audit trails, no access control. Every agent is a potential breach.</p>
+            </div>
+        </div>
+        <div class="slide-number">2 / 8</div>
+    </div>
+
+    <!-- Slide 3: Solution -->
+    <div class="slide slide-solution">
+        <div class="solution-text">
+            <h2>The Solution</h2>
+            <p>Factory is the control plane for AI agents. One dashboard to deploy, monitor, orchestrate, and secure your entire agent workforce.</p>
+            <p style="color: var(--ink-3); font-size: 1rem;">Think Kubernetes for AI agents. Or Datadog for LLM workloads.</p>
+        </div>
+        <div class="solution-visual">
+            ⚙️
+        </div>
+        <div class="slide-number">3 / 8</div>
+    </div>
+
+    <!-- Slide 4: Market -->
+    <div class="slide slide-market">
+        <h2>Market Opportunity</h2>
+        <div class="market-stats">
+            <div class="stat">
+                <div class="stat-number">$200B</div>
+                <div class="stat-label">AI Agent Market by 2030</div>
+                <div class="stat-context">Gartner forecast</div>
+            </div>
+            <div class="stat">
+                <div class="stat-number">47%</div>
+                <div class="stat-label">Enterprises Using AI Agents</div>
+                <div class="stat-context">McKinsey 2025</div>
+            </div>
+            <div class="stat">
+                <div class="stat-number">$50B</div>
+                <div class="stat-label">DevTools Market</div>
+                <div class="stat-context">Adjacent, proven</div>
+            </div>
+        </div>
+        <div class="slide-number">4 / 8</div>
+    </div>
+
+    <!-- Slide 5: Business Model -->
+    <div class="slide slide-business">
+        <h2>Business Model</h2>
+        <div class="revenue-streams">
+            <div class="stream">
+                <h3>Cloud SaaS</h3>
+                <div class="price">$49/mo</div>
+                <p>Per team. Unlimited agents, monitoring, workflows. 85% gross margin.</p>
+            </div>
+            <div class="stream">
+                <h3>Enterprise</h3>
+                <div class="price">$50K+/yr</div>
+                <p>On-premise, SSO, custom integrations, dedicated support.</p>
+            </div>
+            <div class="stream">
+                <h3>Usage</h3>
+                <div class="price">$0.001/task</div>
+                <p>Pay per agent execution. Scales with customer success.</p>
+            </div>
+            <div class="stream">
+                <h3>Marketplace</h3>
+                <div class="price">20% cut</div>
+                <p>Pre-built agent templates and integrations. Network effects.</p>
+            </div>
+        </div>
+        <div class="slide-number">5 / 8</div>
+    </div>
+
+    <!-- Slide 6: Traction -->
+    <div class="slide slide-traction">
+        <h2>Traction & Roadmap</h2>
+        <div class="traction-timeline">
+            <div class="timeline-item">
+                <div class="date">NOW</div>
+                <h3>MVP Live</h3>
+                <p>100 beta users. 3 paying teams. $2K MRR. 99.9% uptime.</p>
+            </div>
+            <div class="timeline-item">
+                <div class="date">Month 3</div>
+                <h3>Product-Market Fit</h3>
+                <p>50 teams. $15K MRR. YC Demo Day. First enterprise pilots.</p>
+            </div>
+            <div class="timeline-item">
+                <div class="date">Month 6</div>
+                <h3>Scale</h3>
+                <p>200 teams. $50K MRR. Seed round. Marketplace launch.</p>
+            </div>
+            <div class="timeline-item">
+                <div class="date">Month 12</div>
+                <h3>Growth</h3>
+                <p>1,000 teams. $200K MRR. Series A. International.</p>
+            </div>
+        </div>
+        <div class="slide-number">6 / 8</div>
+    </div>
+
+    <!-- Slide 7: Team -->
+    <div class="slide slide-team">
+        <h2>The Team</h2>
+        <div class="team-grid">
+            <div class="team-member">
+                <div class="avatar">👨‍💻</div>
+                <h3>Alex Chen</h3>
+                <div class="role">CEO & Founder</div>
+                <p class="bio">Ex-Google SRE. Built internal agent platform at Stripe.</p>
+            </div>
+            <div class="team-member">
+                <div class="avatar">🔧</div>
+                <h3>Sarah Kim</h3>
+                <div class="role">CTO</div>
+                <p class="bio">Ex-HashiCorp. Terraform core contributor. Distributed systems expert.</p>
+            </div>
+            <div class="team-member">
+                <div class="avatar">🎨</div>
+                <h3>Marcus Johnson</h3>
+                <div class="role">Head of Design</div>
+                <p class="bio">Ex-Vercel. Designed developer tools used by millions.</p>
+            </div>
+            <div class="team-member">
+                <div class="avatar">📈</div>
+                <h3>Elena Rodriguez</h3>
+                <div class="role">Head of Growth</div>
+                <p class="bio">Ex-Postman. Grew developer community from 0 to 500K.</p>
+            </div>
+        </div>
+        <div class="slide-number">7 / 8</div>
+    </div>
+
+    <!-- Slide 8: Ask -->
+    <div class="slide slide-ask">
+        <h2>We're Raising</h2>
+        <div class="ask-amount">$2M</div>
+        <div class="ask-breakdown">
+            <div class="ask-item">
+                <div class="pct">40%</div>
+                <p>Engineering & infrastructure</p>
+            </div>
+            <div class="ask-item">
+                <div class="pct">30%</div>
+                <p>Sales & marketing</p>
+            </div>
+            <div class="ask-item">
+                <div class="pct">30%</div>
+                <p>Team expansion</p>
+            </div>
+        </div>
+        <p class="contact">Contact: <a href="mailto:hello@factory.dev">hello@factory.dev</a></p>
+        <div class="slide-number">8 / 8</div>
+    </div>
+
+    <div class="nav-hint">Use arrow keys or scroll to navigate</div>
+
+    <script>
+        const slides = document.querySelectorAll('.slide');
+        let currentSlide = 0;
+
+        function showSlide(index) {
+            slides.forEach((slide, i) => {
+                slide.style.display = i === index ? 'flex' : 'none';
+            });
+        }
+
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowDown' || e.key === 'ArrowRight' || e.key === ' ') {
+                currentSlide = Math.min(currentSlide + 1, slides.length - 1);
+                showSlide(currentSlide);
+            } else if (e.key === 'ArrowUp' || e.key === 'ArrowLeft') {
+                currentSlide = Math.max(currentSlide - 1, 0);
+                showSlide(currentSlide);
+            }
+        });
+
+        showSlide(0);
+    </script>
+</body>
+</html>
