@@ -3,10 +3,11 @@
 ## Pre-Launch (T-7 days to T-1 day)
 
 ### T-7: Asset Finalization
-- [ ] Finalize gallery screenshots (5 images, 1270x760px)
+- [x] Finalize gallery screenshots (5 images, 1270x760px) — see `gallery-screenshots.md`
 - [ ] Record 30-second demo video (GIF or MP4)
-- [ ] Write maker comment (founder story)
-- [ ] Prepare first 10 commenter outreach
+- [x] Write maker comment (founder story) — see `maker-comment.md`
+- [x] Prepare first 10 commenters list — see `first-10-commenters.md`
+- [x] Write follow-up strategy — see `follow-up-strategy.md`
 - [ ] Set up ProductHunt product page draft
 
 ### T-5: Community Warm-Up
